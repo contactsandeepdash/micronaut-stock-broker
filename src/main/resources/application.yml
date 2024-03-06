@@ -1,0 +1,6 @@
+#Wed Mar 06 06:41:57 UTC 2024
+micronaut:
+  application:
+    name: micronaut-stock-borker
+  server:
+    port: 8082
