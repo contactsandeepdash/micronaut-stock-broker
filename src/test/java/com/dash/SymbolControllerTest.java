@@ -1,5 +1,6 @@
 package com.dash;
 
+import com.dash.controller.SymbolsController;
 import com.dash.data.InMemoryStore;
 import com.dash.model.Symbol;
 import io.micronaut.http.HttpStatus;
@@ -11,9 +12,13 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @MicronautTest
 public class SymbolControllerTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(SymbolsController.class);
 
     @Inject
     @Client("/")
@@ -42,6 +47,24 @@ public class SymbolControllerTest {
         var response = httpClient.toBlocking().exchange("/symbols/" + testSymbol.value(), Symbol.class);
         Assertions.assertEquals(HttpStatus.OK, response.getStatus());
         Assertions.assertEquals(testSymbol, response.getBody().get());
+    }
+
+    @Test
+    void symbolsEndpointReturnsListOfSymbolsTakingQueryParametersIntoAccount() {
+        var max10Response = httpClient.toBlocking().exchange("/symbols/filter?max=10", JsonNode.class);
+        Assertions.assertEquals(HttpStatus.OK, max10Response.getStatus());
+        logger.debug("Max: 10 :\n{}", max10Response.getBody().get());
+        Assertions.assertEquals(10, max10Response.getBody().get().size());
+
+        var offset7Response = httpClient.toBlocking().exchange("/symbols/filter?offset=7", JsonNode.class);
+        Assertions.assertEquals(HttpStatus.OK, offset7Response.getStatus());
+        logger.debug("Offset: 7 :\n{}", offset7Response.getBody().get());
+        Assertions.assertEquals(3, offset7Response.getBody().get().size());
+
+        var max2Offset7Response = httpClient.toBlocking().exchange("/symbols/filter?max=2&offset=7", JsonNode.class);
+        Assertions.assertEquals(HttpStatus.OK, max2Offset7Response.getStatus());
+        logger.debug("Max: 2 and Offset : 7 :\n{}", max2Offset7Response.getBody().get());
+        Assertions.assertEquals(2, max2Offset7Response.getBody().get().size());
     }
 
 }
