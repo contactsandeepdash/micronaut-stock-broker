@@ -1,7 +1,6 @@
-package com.dash.controller;
+package com.dash.controller.symbol;
 
 import com.dash.data.InMemoryStore;
-import com.dash.model.Symbol;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;

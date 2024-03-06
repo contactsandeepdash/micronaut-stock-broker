@@ -1,4 +1,4 @@
-package com.dash.model;
+package com.dash.controller.symbol;
 
 import io.micronaut.serde.annotation.SerdeImport;
 import io.micronaut.serde.annotation.Serdeable;

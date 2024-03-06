@@ -1,8 +1,8 @@
 package com.dash;
 
-import com.dash.controller.SymbolsController;
+import com.dash.controller.symbol.SymbolsController;
 import com.dash.data.InMemoryStore;
-import com.dash.model.Symbol;
+import com.dash.controller.symbol.Symbol;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;

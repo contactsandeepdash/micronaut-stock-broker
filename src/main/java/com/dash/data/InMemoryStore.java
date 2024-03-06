@@ -1,6 +1,6 @@
 package com.dash.data;
 
-import com.dash.model.Symbol;
+import com.dash.controller.symbol.Symbol;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Singleton;
 import net.datafaker.Faker;
