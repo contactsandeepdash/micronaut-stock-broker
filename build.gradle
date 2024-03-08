@@ -15,13 +15,28 @@ dependencies {
     annotationProcessor("io.micronaut:micronaut-http-validation")
     annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("io.micronaut:micronaut-jackson-databind")
     compileOnly("io.micronaut:micronaut-http-client")
+    compileOnly("org.projectlombok:lombok")
     runtimeOnly("ch.qos.logback:logback-classic")
     testImplementation("io.micronaut:micronaut-http-client")
 
     // extra
     implementation group: 'org.yaml', name: 'snakeyaml', version: '2.2'
     implementation group: 'net.datafaker', name: 'datafaker', version: '2.1.0'
+
+    // Schema migration through Flyway
+    implementation("io.micronaut.flyway:micronaut-flyway")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    runtimeOnly("org.flywaydb:flyway-database-postgresql")
+    runtimeOnly("org.postgresql:postgresql")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    annotationProcessor("io.micronaut.data:micronaut-data-processor")
+
+    // Kafka
+    implementation("io.micronaut.kafka:micronaut-kafka")
+
+
 
 }
 

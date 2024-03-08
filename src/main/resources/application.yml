@@ -3,4 +3,30 @@ micronaut:
   application:
     name: micronaut-stock-borker
   server:
-    port: 8082
+    port: 8091
+
+flyway:
+  datasources:
+    default:
+      default-schema: dash_micronaut
+      enabled: true
+#      clean-schema: false
+      url: jdbc:postgresql://localhost:5432/dash_db
+      user: post_user
+      password: S3cret
+#      schemas: dash_micronaut
+
+kafka:
+  bootstrap:
+    servers:
+      - localhost:9092
+#  consumers:
+#    default:
+#      key-deserializer: org.apache.kafka.common.serialization.UUIDSerializer
+#      value-deserializer: org.apache.kafka.common.serialization.UUIDSerializer
+#  producers:
+#    default:
+#      key-deserializer: org.apache.kafka.common.serialization.UUIDSerializer
+#      value-deserializer: org.apache.kafka.common.serialization.UUIDSerializer
+
+
